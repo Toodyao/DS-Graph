@@ -5,6 +5,7 @@ class Graph	{
 protected:
 	int e_num; // edge number
 	int v_num; // vertex number
+	static const int INF = 0x3F3F3F3F;
 public:
 	Graph() {
 		e_num = 0;
@@ -25,7 +26,7 @@ public:
 
 	virtual int vertex_weight(int v)=0;
 	virtual int edge_weight(int st, int ed)=0;
-	virtual void add_vertex(int vertex)=0;
+	virtual void add_vertex(int vertex_num, int vertex_weight)=0;
 	virtual void add_edge(int st, int ed, int weight)=0;
 	virtual void del_vertex(int v)=0;
 	virtual void del_edge(int st, int ed)=0;

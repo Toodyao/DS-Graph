@@ -4,32 +4,34 @@
 #include <vector>
 #include "graph.h"
 
-const int INF = 0x3F3F3F3F;
-
 class GraphAdjList : public Graph {
 private:
 	struct edge_node {
-		int st, ed;
+		//int st, ed;
+		int e_num;
 		int e_weight;
-		edge_node():st(-1), ed(-1), e_weight(INF) {}
-		edge_node(int s, int e, int w):st(s), ed(e), e_weight(w) {}
+		edge_node():e_num(-1), e_weight(INF) {};
+		edge_node(int num, int weight): e_num(num), e_weight(weight) {};
+		//edge_node():st(-1), ed(-1), e_weight(INF) {}
+		//edge_node(int s, int e, int w):st(s), ed(e), e_weight(w) {}
 	};
 
 	struct vertex_node {
+		int v_num;
 		int v_weight;
 		std::vector<edge_node> edge_list;
 		vertex_node():v_weight(INF) {}
-		vertex_node(int weight):v_weight(weight) {}
+		vertex_node(int num, int weight):v_num(num), v_weight(weight) {}
 	};
 
-	std::vector<vertex_node> v_list;
 public:
+	std::vector<vertex_node> v_list;
 	GraphAdjList();
 	GraphAdjList(unsigned int num);
 	~GraphAdjList() {};
 	int vertex_weight(int v) override;
 	int edge_weight(int st, int ed) override;
-	void add_vertex(int vertex) override;
+	void add_vertex(int vertex_num, int vertex_weight = INF) override;
 	void add_edge(int st, int ed, int weight) override;
 	void del_vertex(int v) override;
 	void del_edge(int st, int ed) override;
