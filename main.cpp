@@ -1,6 +1,12 @@
 #include <iostream>
+#include "graph_adj_list.h"
+using namespace std;
 
 int main() {
-	std::cout << "Hello, World!" << std::endl;
+	GraphAdjList g;
+	cout << g.edge_num();
+
+
+
 	return 0;
 }
