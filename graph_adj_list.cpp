@@ -62,9 +62,20 @@ void GraphAdjList::add_edge(int st, int ed, int weight) {
 
 	// insert in order
 	auto it = temp.begin();
-	for (it = temp.begin(); it != temp.end(); ++it)
-		if ((*it).e_num == ed)
+	for (it = temp.begin(); it != temp.end(); ++it) {
+		auto num = (*it).e_num;
+		if (ed == num) {
 			temp.insert(it, edge_node(ed, weight));
+			break;
+		}
+		else if (ed < num) {
+			if (it != temp.begin())
+				it--;
+			temp.insert(it, edge_node(ed, weight));
+			break;
+		}
+
+	}
 
 	// if not find, push back
 	if (it == temp.end())
