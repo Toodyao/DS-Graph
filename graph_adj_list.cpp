@@ -43,6 +43,8 @@ void GraphAdjList::add_vertex(int vertex_num, int vertex_weight) {
 	}
 	if (need_push)
 		v_list.push_back(vertex_node(vertex_num, vertex_weight));
+
+	v_num++;
 }
 
 void GraphAdjList::add_edge(int st, int ed, int weight) {
@@ -81,6 +83,7 @@ void GraphAdjList::add_edge(int st, int ed, int weight) {
 	if (it == temp.end())
 		temp.push_back(edge_node(ed, weight));
 
+	e_num++;
 }
 
 void GraphAdjList::del_vertex(int vertex_num) {
@@ -104,6 +107,8 @@ void GraphAdjList::del_vertex(int vertex_num) {
 			break;
 		}
 	}
+
+	v_num--;
 }
 
 void GraphAdjList::del_edge(int st, int ed) {
@@ -114,4 +119,6 @@ void GraphAdjList::del_edge(int st, int ed) {
 			break;
 		}
 	}
+
+	e_num--;
 }
