@@ -1,28 +1,24 @@
 #include <iostream>
+#include <cstdio>
 #include "graph_adj_list.h"
+#include "graph_algorithms.h"
 using namespace std;
 
+
 int main() {
-	GraphAdjList g;
+	freopen("../input.txt", "r", stdin);
 
-	g.add_vertex(0);
-	g.add_vertex(1);
-	g.add_vertex(2);
-	g.add_vertex(4);
 
-	g.add_edge(0, 2, 4);
-	g.add_edge(1, 0, 7);
-//	g.add_edge(2, 3, 5);
-	g.add_edge(4, 1, 9);
+	int vertex_num;
+	cin >> vertex_num;
+	GraphAdjList g(vertex_num);
 
-	g.add_vertex(3);
-	g.add_edge(3, 1, 6);
-	g.add_edge(2, 3, 5);
+	int start, end = 0, weight = 0;
+	while (cin >> start >> end >> weight) {
+		g.add_edge(start, end, weight);
+		g.add_edge(end, start, weight);
+	}
 
-	g.add_edge(0, 1, 10);
-//	g.del_vertex(0);
-//	g.del_edge(1, 0);
-//	cout << g.v_list[0].v_weight << endl;
 	auto &v = g.v_list;
 	for (auto i : v) {
 		for (auto j : i.edge_list) {
@@ -31,8 +27,17 @@ int main() {
 		cout << "X";
 		cout << endl;
 	}
-
+	int n = g.vertex_num();
+	auto dist = new int[n];
+	auto path = new int[n];
+	dijkstra(g, 0, dist, path);
+	for (int i = 0; i < n; i++)
+		printf("%d ", dist[i]);
+	printf("\n");
+	for (int i = 0; i < n; i++)
+		printf("%d ", path[i]);
 
 
 	return 0;
 }
+
