@@ -30,13 +30,20 @@ int main() {
 	int n = g.vertex_num();
 	auto dist = new int[n];
 	auto path = new int[n];
+	dijkstra_not_use_heap(g, 0, dist, path);
+	for (int i = 0; i < n; i++)
+		printf("%d ", dist[i]);
+	printf("\n");
+	for (int i = 0; i < n; i++)
+		printf("%d ", path[i]);
+	printf("\n");
+
 	dijkstra(g, 0, dist, path);
 	for (int i = 0; i < n; i++)
 		printf("%d ", dist[i]);
 	printf("\n");
 	for (int i = 0; i < n; i++)
 		printf("%d ", path[i]);
-
 
 	return 0;
 }
