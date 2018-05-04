@@ -27,7 +27,7 @@ private:
 public:
 	std::vector<vertex_node> v_list;
 	GraphAdjList();
-	GraphAdjList(unsigned int num);
+	GraphAdjList(int num);
 	~GraphAdjList() {};
 	int vertex_weight(int v) override;
 	int edge_weight(int st, int ed) override;

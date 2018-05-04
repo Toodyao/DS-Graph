@@ -27,7 +27,7 @@ public:
 
 	virtual int vertex_weight(int v)=0;
 	virtual int edge_weight(int st, int ed)=0;
-	virtual void add_vertex(int vertex_num, int vertex_weight)=0;
+	virtual void add_vertex(int vertex_num, int vertex_weight = INF)=0;
 	virtual void add_edge(int st, int ed, int weight)=0;
 	virtual void del_vertex(int v)=0;
 	virtual void del_edge(int st, int ed)=0;

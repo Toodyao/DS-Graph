@@ -1,12 +1,11 @@
 #include "graph_adj_list.h"
 
-GraphAdjList::GraphAdjList() {
+GraphAdjList::GraphAdjList() = default;
 
-}
-
-GraphAdjList::GraphAdjList(unsigned int num) {
-	v_list.resize(num);
-}
+GraphAdjList::GraphAdjList(int size) {
+		for (int i = 0; i < size; i++)
+			add_vertex(i);
+	}
 
 int GraphAdjList::vertex_weight(int v) {
 	return v_list[v].v_weight;
