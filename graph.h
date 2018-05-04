@@ -1,11 +1,12 @@
 #ifndef DS_GRAPH_GRAPH_HPP
 #define DS_GRAPH_GRAPH_HPP
 
+static const int INF = 0x3F3F3F3F;
+
 class Graph	{
 protected:
 	int e_num; // edge number
 	int v_num; // vertex number
-	static const int INF = 0x3F3F3F3F;
 public:
 	Graph() {
 		e_num = 0;
