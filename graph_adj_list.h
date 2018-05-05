@@ -23,9 +23,9 @@ private:
 		vertex_node():v_weight(INF) {}
 		vertex_node(int num, int weight):v_num(num), v_weight(weight) {}
 	};
+	std::vector<vertex_node> v_list;
 
 public:
-	std::vector<vertex_node> v_list;
 	GraphAdjList();
 	GraphAdjList(int num);
 	~GraphAdjList() {};
