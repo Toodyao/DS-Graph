@@ -27,7 +27,18 @@ int find_min_with_heap(std::priority_queue<P> & q, int *visit) {
 	return -1;
 }
 
-int find_min(int size, int *dist, int *visit);
+int find_min(int size, int *dist, int *visit) {
+    // liner search, O(n)
+    int min_num = INF;
+    int min_pos = -1;
+    for (int i = 0; i < size; i++)
+        if (!visit[i] && min_num > dist[i]) {
+            min_num = std::min(min_num, dist[i]);
+            min_pos = i;
+        }
+
+    return min_pos;
+}
 
 void dijkstra(Graph &g, int start, int *&dist, int *&path) {
 //	typedef std::pair<int, int> P; // first is weight, second is to_edge
@@ -100,17 +111,24 @@ void dijkstra_not_use_heap(Graph &g, int start, int *&dist, int *&path) {
 	}
 }
 
-int find_min(int size, int *dist, int *visit) {
-	// liner search, O(n)
-	int min_num = INF;
-	int min_pos = -1;
-	for (int i = 0; i < size; i++)
-		if (!visit[i] && min_num > dist[i]) {
-			min_num = std::min(min_num, dist[i]);
-			min_pos = i;
-		}
+void floyd(Graph &g, int **&dist, int **&path) {
+	int n = g.vertex_num();
+	int **adj_mat = g.get_matrix();
+	dist = adj_mat;
+	path = new int *[n];
+	for (int i = 0; i < n; i++)
+		path[i] = new int [n];
 
-	return min_pos;
+	for (int k = 0; k < n; k++) {
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				if (dist[i][k] + dist[k][j] < dist[i][j]) {
+					dist[i][j] = dist[i][k] + dist[k][j];
+					path[i][j] = k;
+				}
+			}
+		}
+	}
 }
 
 
