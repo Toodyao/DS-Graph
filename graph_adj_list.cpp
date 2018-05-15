@@ -121,3 +121,18 @@ void GraphAdjList::del_edge(int st, int ed) {
 
 	e_num--;
 }
+
+int **GraphAdjList::get_matrix() {
+	int n = this->vertex_num();
+	int **mat = new int *[n];
+	for (int i = 0; i < n; i++)
+		mat[i] = new int [n];
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			mat[i][j] = this->edge_weight(i, j);
+		}
+	}
+
+	return mat;
+}

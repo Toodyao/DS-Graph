@@ -31,6 +31,7 @@ public:
 	virtual void add_edge(int st, int ed, int weight)=0;
 	virtual void del_vertex(int v)=0;
 	virtual void del_edge(int st, int ed)=0;
+	virtual int **get_matrix()=0;
 
 };
 

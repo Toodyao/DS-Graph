@@ -16,6 +16,8 @@ GraphAdjMatrix::GraphAdjMatrix(int num) {
 	v = new int[num];
 	for (int i = 0; i < num; i++)
 		v[i] = -1;
+
+	v_num = num;
 }
 
 GraphAdjMatrix::~GraphAdjMatrix() {
@@ -49,5 +51,9 @@ void GraphAdjMatrix::del_vertex(int v) {
 
 void GraphAdjMatrix::del_edge(int st, int ed) {
 	edge_matrix[st][ed] = INF;
+}
+
+int **GraphAdjMatrix::get_matrix() {
+	return edge_matrix;
 }
 

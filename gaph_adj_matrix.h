@@ -20,6 +20,7 @@ public:
 	void add_edge(int st, int ed, int weight) override;
 	void del_vertex(int v) override;
 	void del_edge(int st, int ed) override;
+    int **get_matrix() override;
 
 };
 
