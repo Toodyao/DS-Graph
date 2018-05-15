@@ -9,7 +9,7 @@ using namespace std;
 int main() {
 	freopen("../input.txt", "r", stdin);
 
-
+	cout << "\n-----Dijkstra Adj List-----" << endl;
 	int vertex_num;
 	cin >> vertex_num;
 	GraphAdjList g_list(vertex_num);
@@ -30,8 +30,8 @@ int main() {
 //	}
 
 	int n = g_list.vertex_num();
-	auto dist = new int[n];
-	auto path = new int[n];
+	int *dist;
+	int *path;
 	dijkstra_not_use_heap(g_list, 0, dist, path);
 	for (int i = 0; i < n; i++)
 		printf("%d ", dist[i]);
@@ -47,8 +47,11 @@ int main() {
 	for (int i = 0; i < n; i++)
 		printf("%d ", path[i]);
 
-	cout << "\n-----------------" << endl;
+	delete dist;
+	delete path;
 
+	cout << "\n----Dijkstra Adj Matrix-----" << endl;
+	vertex_num = 0;
 	cin >> vertex_num;
 	GraphAdjMatrix g_matrix(vertex_num);
 
@@ -56,10 +59,17 @@ int main() {
 		g_matrix.add_edge(start, end, weight);
 		g_matrix.add_edge(end, start, weight);
 	}
-	n = g_list.vertex_num();
-	dist = new int[n];
-	path = new int[n];
-	dijkstra_not_use_heap(g_list, 0, dist, path);
+	n = g_matrix.vertex_num();
+	// debug
+//	auto mat = g_matrix.get_matrix();
+//	for (int i = 0; i < n; i++) {
+//		for (int j = 0; j < n; j++) {
+//			printf("%d ", mat[i][j]);
+//		}
+//		printf("\n");
+//	}
+	// debug
+	dijkstra_not_use_heap(g_matrix, 0, dist, path);
 	for (int i = 0; i < n; i++)
 		printf("%d ", dist[i]);
 	printf("\n");
@@ -67,12 +77,15 @@ int main() {
 		printf("%d ", path[i]);
 	printf("\n");
 
-	dijkstra(g_list, 0, dist, path);
+	dijkstra(g_matrix, 0, dist, path);
 	for (int i = 0; i < n; i++)
 		printf("%d ", dist[i]);
 	printf("\n");
 	for (int i = 0; i < n; i++)
 		printf("%d ", path[i]);
+
+	cout << "\n------Floyd Adj List-------" << endl;
+	cout << "\n-----Floyd Adj Matrix-------" << endl;
 
 
 	return 0;
