@@ -131,4 +131,60 @@ void floyd(Graph &g, int **&dist, int **&path) {
 	}
 }
 
+int prime(Graph &g, int start) {
+	std::priority_queue<P> q;
+	GraphAdjList mst; // store MST in graph
+
+	int n = g.vertex_num();
+	int weight_sum = 0; // total weight of MST 
+	int vertex_count = 0;
+
+	int *dist = new int [n];
+	int *visit = new int [n];
+	int *path = new int [n];
+
+	for (int i = 0; i < n; i++) {
+		dist[i] = g.edge_weight(start,  i);
+		path[i] = false;
+		q.push(P(g.edge_weight(start, i), i));
+	}
+
+	dist[start] = 0;
+	path[start] = -1; // start is the root of MST
+	visit[start] = true;
+	vertex_count = 1;
+
+	while (1) {
+		int v = find_min_with_heap(q, visit); // same as Dijkstra
+		if (v == -1 || v == INF) // v == INF means graph is not connected
+			break;
+
+		// add 'v' into MST and marked as visited
+		mst.add_edge(path[v], v, dist[v]);
+		weight_sum += dist[v];
+		vertex_count++;
+
+		dist[v] = 0;
+		visit[v] = true;
+
+		// similar to Dijkstra
+		for (int u = 0; u < n; u++) {
+			int weight = g.edge_weight(v, u);
+			if (dist[u] != 0 && weight < INF) {
+				if (weight < dist[u]) {
+					dist[u] = weight;
+					path[u] = v;
+					q.push(P(dist[u], u));
+				}
+			}
+		}
+	}
+
+	// if not all vertex are included
+	if (vertex_count < n) 
+		weight_sum = -1;
+
+	return weight_sum;
+}
+
 
