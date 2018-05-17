@@ -54,6 +54,20 @@ void GraphAdjMatrix::del_edge(int st, int ed) {
 }
 
 int **GraphAdjMatrix::get_matrix() {
-	return edge_matrix;
+	// return the copied matrix
+	int n = v_num;
+	int **mat = new int *[n];
+	for (int i = 0; i < n; i++)
+		mat[i] = new int [n];
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			if (i == j)
+				mat[i][j] = 0;
+			else
+				mat[i][j] = edge_matrix[i][j];
+		}
+	}
+	return mat;
 }
 

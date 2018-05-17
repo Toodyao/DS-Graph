@@ -118,6 +118,9 @@ void floyd(Graph &g, int **&dist, int **&path) {
 	path = new int *[n];
 	for (int i = 0; i < n; i++)
 		path[i] = new int [n];
+	for (int i = 0; i < n; i++)
+		for (int j = 0; j < n; j++)
+			path[i][j] = INF;
 
 	for (int k = 0; k < n; k++) {
 		for (int i = 0; i < n; i++) {

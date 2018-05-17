@@ -130,7 +130,10 @@ int **GraphAdjList::get_matrix() {
 
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n; j++) {
-			mat[i][j] = this->edge_weight(i, j);
+			if (i == j)
+				mat[i][j] = 0;
+			else
+				mat[i][j] = this->edge_weight(i, j);
 		}
 	}
 
