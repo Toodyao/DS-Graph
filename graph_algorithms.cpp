@@ -135,9 +135,9 @@ void floyd(Graph &g, int **&dist, int **&path) {
 	}
 }
 
-int prime(Graph &g, int start) {
+int prime(Graph &g, int start, GraphAdjList *mst) {
 	std::priority_queue<P> q;
-	GraphAdjList mst; // store MST in graph
+//	GraphAdjList mst; // store MST in graph
 
 	int n = g.vertex_num();
 	int weight_sum = 0; // total weight of MST 
@@ -150,6 +150,7 @@ int prime(Graph &g, int start) {
 	for (int i = 0; i < n; i++) {
 		dist[i] = g.edge_weight(start,  i);
 		path[i] = false;
+		visit[i] = false;
 		q.push(P(g.edge_weight(start, i), i));
 	}
 
@@ -164,7 +165,7 @@ int prime(Graph &g, int start) {
 			break;
 
 		// add 'v' into MST and marked as visited
-		mst.add_edge(path[v], v, dist[v]);
+		(*mst).add_edge(path[v], v, dist[v]);
 		weight_sum += dist[v];
 		vertex_count++;
 
@@ -191,7 +192,7 @@ int prime(Graph &g, int start) {
 	return weight_sum;
 }
 
-void print_path_floyd(int i, int j, const int **path) {
+void print_path_floyd(int i, int j, int **path) {
 	if (i == j)
 		return;
 	if (path[i][j] == INF) {

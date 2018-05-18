@@ -35,9 +35,12 @@ int main() {
 	floyd_test(g_list);
 	cout << "\n-----Floyd Adj Matrix-------" << endl;
 	floyd_test(g_matrix);
+	g_matrix.dfs();
+	cout << endl;
+	g_matrix.bfs(0);
 
-//	cout << "\n-----Prime-------" << endl;
-//	prime_test(g_list);
+	cout << "\n-----Prime-------" << endl;
+	prime_test(g_list);
 //	cout << "\n-----Prime-------" << endl;
 
 	// adj_list print:
@@ -54,12 +57,14 @@ int main() {
 }
 
 void prime_test(Graph &g) {
-	int MST_weight;
-
-	MST_weight = prime(g, 0); // start from 0
+	int MST_weight = 0;
+	GraphAdjList MST(g.vertex_num());
+	MST_weight = prime(g, 0, &MST); // start from 0
 
 	cout << "weight: " << MST_weight << endl;
 	cout << "tree in bfs: " << endl;
+	MST.vertex_num();
+
 
 }
 
