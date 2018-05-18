@@ -1,4 +1,6 @@
 #include "gaph_adj_matrix.h"
+#include <cstdio>
+#include <queue>
 
 GraphAdjMatrix::GraphAdjMatrix(int num) {
 	// allocate matrix memory
@@ -69,5 +71,46 @@ int **GraphAdjMatrix::get_matrix() {
 		}
 	}
 	return mat;
+}
+
+void GraphAdjMatrix::dfs() {
+	bool *visit = new bool [v_num];
+	for (int i = 0; i < v_num; i++)
+		visit[i] = false;
+	dfs_recursion(0, visit);
+}
+
+void GraphAdjMatrix::bfs(int start) {
+	int n = v_num;
+	bool *visit = new bool [n];
+	for (int i = 0; i < n; i++)
+		visit[i] = false;
+
+	std::queue<int> q;
+	q.push(start);
+	printf("%d ", start);
+	visit[start] = true;
+
+	while (!q.empty()) {
+		int temp = q.front();
+		q.pop();
+		for (int i = 0; i < n; i++) {
+			if (!visit[i] && edge_weight(temp, i) != INF) {
+				visit[i] = true;
+				printf("%d ", i);
+				q.push(i);
+			}
+		}
+	}
+}
+
+void GraphAdjMatrix::dfs_recursion(int n, bool *&visit) {
+	printf("%d ", n);
+	visit[n] = true;
+	for (int i = 0; i < v_num; i++) {
+		if (!visit[i]) {
+			dfs_recursion(i, visit);
+		}
+	}
 }
 

@@ -21,7 +21,10 @@ public:
 	void del_vertex(int v) override;
 	void del_edge(int st, int ed) override;
     int **get_matrix() override;
+	void dfs();
+	void bfs(int start);
 
+	void dfs_recursion(int n, bool *&visit);
 };
 
 
