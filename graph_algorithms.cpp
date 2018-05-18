@@ -1,6 +1,7 @@
 #include "graph_algorithms.h"
 #include <queue>
 #include <algorithm>
+#include <cstdio>
 
 class pair { // simple version of std::pair
 public:
@@ -188,6 +189,18 @@ int prime(Graph &g, int start) {
 		weight_sum = -1;
 
 	return weight_sum;
+}
+
+void print_path_floyd(int i, int j, const int **path) {
+	if (i == j)
+		return;
+	if (path[i][j] == INF) {
+		printf("%d ", j);
+	}
+	else {
+		print_path_floyd(i, path[i][j], path);
+		print_path_floyd(path[i][j], j, path);
+	}
 }
 
 

@@ -4,7 +4,6 @@
 #include "graph_algorithms.h"
 #include "gaph_adj_matrix.h"
 using namespace std;
-// TODO: get_matrix()返回问题，是引用还是重新拷贝？
 
 void floyd_test(Graph &g);
 void dijkstra_test(Graph &g);
@@ -13,6 +12,7 @@ void prime_test(Graph &g);
 
 int main() {
 	freopen("../input.txt", "r", stdin);
+//	freopen("../output.txt", "w", stdout);
 
 
 	int vertex_num;
@@ -27,18 +27,19 @@ int main() {
 		g_matrix.add_edge(start, end, weight);
 		g_matrix.add_edge(end, start, weight);
 	}
-//	cout << "\n-----Dijkstra Adj List-----" << endl;
-//	dijkstra_test(g_list);
-//	cout << "\n----Dijkstra Adj Matrix-----" << endl;
-//	dijkstra_test(g_matrix);
-//	cout << "\n------Floyd Adj List-------" << endl;
-//	floyd_test(g_list);
-//	cout << "\n-----Floyd Adj Matrix-------" << endl;
-//	floyd_test(g_matrix);
+	cout << "\n-----Dijkstra Adj List-----" << endl;
+	dijkstra_test(g_list);
+	cout << "\n----Dijkstra Adj Matrix-----" << endl;
+	dijkstra_test(g_matrix);
+	cout << "\n------Floyd Adj List-------" << endl;
+	floyd_test(g_list);
+	cout << "\n-----Floyd Adj Matrix-------" << endl;
+	floyd_test(g_matrix);
 
-	cout << "\n-----Prime-------" << endl;
-	prime_test(g_list);
-	cout << "\n-----Prime-------" << endl;
+//	cout << "\n-----Prime-------" << endl;
+//	prime_test(g_list);
+//	cout << "\n-----Prime-------" << endl;
+
 	// adj_list print:
 	//	auto &v = g_list.v_list;
 	//	for (auto i : v) {
@@ -84,6 +85,10 @@ void floyd_test(Graph &g) {
 		}
 		printf("\n");
 	}
+
+	cout << "path(0->7): " << 0 << " ";
+	print_path_floyd(0, 7, path);
+	cout << endl;
 
 	for (int i = 0; i < n; i++)
 		delete[] dist[i];
