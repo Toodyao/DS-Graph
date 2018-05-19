@@ -196,11 +196,20 @@ void print_path_floyd(int i, int j, int **path) {
 	if (i == j)
 		return;
 	if (path[i][j] == INF) {
-		printf("%d ", j);
+		printf("->%d", j);
 	}
 	else {
 		print_path_floyd(i, path[i][j], path);
 		print_path_floyd(path[i][j], j, path);
+	}
+}
+
+void print_path_dijkstra(int start, int *path) {
+	if (path[start] == -1) {
+		printf("%d", start);
+	} else {
+		print_path_dijkstra(path[start], path);
+		printf("->%d", start);
 	}
 }
 
