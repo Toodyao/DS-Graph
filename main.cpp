@@ -2,7 +2,7 @@
 #include <cstdio>
 #include "graph_adj_list.h"
 #include "graph_algorithms.h"
-#include "gaph_adj_matrix.h"
+#include "graph_adj_matrix.h"
 using namespace std;
 
 void floyd_test(Graph &g);

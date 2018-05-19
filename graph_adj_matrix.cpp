@@ -1,4 +1,4 @@
-#include "gaph_adj_matrix.h"
+#include "graph_adj_matrix.h"
 #include <cstdio>
 #include <queue>
 
