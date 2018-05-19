@@ -1,4 +1,6 @@
 #include "graph_adj_list.h"
+#include <cstdio>
+#include <queue>
 
 GraphAdjList::GraphAdjList() = default;
 
@@ -138,4 +140,44 @@ int **GraphAdjList::get_matrix() {
 	}
 
 	return mat;
+}
+
+void GraphAdjList::dfs() {
+	bool *visit = new bool [v_num];
+	for (int i = 0; i < v_num; i++)
+		visit[i] = false;
+	dfs_recursion(0, visit);
+}
+
+void GraphAdjList::dfs_recursion(int n, bool *&visit) {
+	printf("%d ", n);
+	visit[n] = true;
+	for (int i = 0; i < v_num; i++) {
+		if (!visit[i] && edge_weight(n, i) != INF) {
+			dfs_recursion(i, visit);
+		}
+	}
+
+}
+
+void GraphAdjList::bfs(int start) {
+	std::queue<int> q;
+	bool *visit = new bool [v_num];
+	for (int i = 0; i < v_num; i++)
+		visit[i] = false;
+	q.push(start);
+	visit[start] = true;
+	printf("%d ", start);
+
+	while (!q.empty()) {
+		int temp = q.front();
+		q.pop();
+		for (int i = 0; i < v_num; i++) {
+			if (!visit[i] && edge_weight(temp, i) != INF) {
+				visit[i] = true;
+				printf("%d ", i);
+				q.push(i);
+			}
+		}
+	}
 }

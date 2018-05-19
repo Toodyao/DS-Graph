@@ -80,6 +80,16 @@ void GraphAdjMatrix::dfs() {
 	dfs_recursion(0, visit);
 }
 
+void GraphAdjMatrix::dfs_recursion(int n, bool *&visit) {
+	printf("%d ", n);
+	visit[n] = true;
+	for (int i = 0; i < v_num; i++) {
+		if (!visit[i]) {
+			dfs_recursion(i, visit);
+		}
+	}
+}
+
 void GraphAdjMatrix::bfs(int start) {
 	int n = v_num;
 	bool *visit = new bool [n];
@@ -100,16 +110,6 @@ void GraphAdjMatrix::bfs(int start) {
 				printf("%d ", i);
 				q.push(i);
 			}
-		}
-	}
-}
-
-void GraphAdjMatrix::dfs_recursion(int n, bool *&visit) {
-	printf("%d ", n);
-	visit[n] = true;
-	for (int i = 0; i < v_num; i++) {
-		if (!visit[i]) {
-			dfs_recursion(i, visit);
 		}
 	}
 }

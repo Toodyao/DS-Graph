@@ -32,6 +32,8 @@ public:
 	virtual void del_vertex(int v)=0;
 	virtual void del_edge(int st, int ed)=0;
 	virtual int **get_matrix()=0;
+	virtual void dfs()=0;
+	virtual void bfs(int start)=0;
 
 };
 
