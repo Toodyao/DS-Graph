@@ -23,9 +23,9 @@ int main() {
 	int start, end = 0, weight = 0;
 	while (cin >> start >> end >> weight) {
 		g_list.add_edge(start, end, weight);
-		g_list.add_edge(end, start, weight);
+//		g_list.add_edge(end, start, weight);
 		g_matrix.add_edge(start, end, weight);
-		g_matrix.add_edge(end, start, weight);
+//		g_matrix.add_edge(end, start, weight);
 	}
 	cout << "\n-----Dijkstra Adj List-----" << endl;
 	dijkstra_test(g_list);
@@ -35,14 +35,15 @@ int main() {
 	floyd_test(g_list);
 	cout << "\n-----Floyd Adj Matrix-------" << endl;
 	floyd_test(g_matrix);
-	g_matrix.dfs();
-	cout << endl;
-	g_matrix.bfs(0);
 
 	cout << "\n-----Prime-------" << endl;
 	prime_test(g_list);
-//	cout << "\n-----Prime-------" << endl;
+	cout << endl;
 
+	cout << "\n-----DFS-------" << endl;
+	g_list.dfs();
+	cout << "\n-----BFS-------" << endl;
+	g_list.bfs(0);
 	// adj_list print:
 	//	auto &v = g_list.v_list;
 	//	for (auto i : v) {
@@ -63,8 +64,7 @@ void prime_test(Graph &g) {
 
 	cout << "weight: " << MST_weight << endl;
 	cout << "tree in bfs: " << endl;
-	MST.vertex_num();
-
+	MST.bfs(0);
 
 }
 
@@ -90,8 +90,8 @@ void floyd_test(Graph &g) {
 		}
 		printf("\n");
 	}
-
-	cout << "path(0->7): " << 0 << " ";
+	cout << "shortest: " << dist[0][7] << endl;
+	cout << "path(0->7): " << 0;
 	print_path_floyd(0, 7, path);
 	cout << endl;
 
@@ -109,12 +109,17 @@ void dijkstra_test(Graph &g) {
 	auto path = new int[n];
 
 	dijkstra(g, 0, dist, path);
+
 	printf("dist: ");
 	for (int i = 0; i < n; i++)
 		printf("%d ", dist[i]);
 	printf("\npath: ");
 	for (int i = 0; i < n; i++)
 		printf("%d ", path[i]);
+
+	cout << "\nshortest: " << dist[7] << endl;
+	cout << "path(0->7): ";
+	print_path_dijkstra(7, path);
 
 	delete dist;
 	delete path;
